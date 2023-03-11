@@ -34,17 +34,26 @@ def analysis2(score):
         return 'Very Positive'
     elif score > 0:
         return 'Positive'
+with st.sidebar:
+    sb = st.selectbox("Choose your language", ("English", "Français/French"))
+if sb == "English":
+    st.title("Analize the sentiment of your sentence")
 
-st.title("Analize the sentiment of your sentence")
+    sentence = st.text_input("Your sentence")
 
-sentence = st.text_input("Your sentence")
+    if st.button("Analyze"):
+        subj = getSubjectivity(sentence)
+        pol = getPolarity(sentence)
+        sentiment = analysis2(pol)
+        st.write(sentiment)
 
-if st.button("Analyze"):
-    subj = getSubjectivity(sentence)
-    pol = getPolarity(sentence)
-    sentiment = analysis2(pol)
-    st.write(sentiment)
+if sb == "Français/French":
+    st.title("Analyser les sentiments de votre phrase")
 
+    sentence = st.text_input("Votre phrase")
 
-
-
+    if st.button("Analyser"):
+        subj = getSubjectivity(sentence)
+        pol = getPolarity(sentence)
+        sentiment = analysis2(pol)
+        st.write(sentiment)
